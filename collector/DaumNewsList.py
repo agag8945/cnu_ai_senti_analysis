@@ -1,10 +1,13 @@
 import pprint
 import requests
 from bs4 import BeautifulSoup
+from collector.CollectorService import get_daum_news
 # <a (앵커 태그)
 
 # = : 대입 연산자
 url = 'https://news.daum.net/breakingnews/digital'
+
+# SSL Error -> requests.get(url, verify = False)
 
 result = requests.get(url)      # result : 소스코드가 있음
 
@@ -23,5 +26,6 @@ title_list = doc.select('ul.list_news2 a.link_txt')
 # len(list) = 15, index = 0~14
 for i, title in enumerate(title_list):
     print(f'인덱스 : {i}, url : {title["href"]}')      # ["href"] : title 속의 href 속성 값을 가져옴
-                                                      # title.get_text : 제목만 가져옴
+                                                    # title.get_text : 제목만 가져옴
+    get_daum_news(title["href"])
 
