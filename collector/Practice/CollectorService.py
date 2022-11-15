@@ -35,3 +35,4 @@ def get_daum_news(url):                                # def : 함수 이름 지
         for line in contents:
             content += line.get_text()
         print(f'뉴스 본문 : {content}')
+
